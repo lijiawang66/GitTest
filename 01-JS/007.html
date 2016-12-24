@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+	<script>
+		//请编写一个函数，使得f(4)(5)(6) 的结果返回120
+		function f(a){
+			return function(b){
+				return function(c){
+					return a*b*c;
+				}
+			}
+		}
+		
+		//什么叫作用域？它就是一个对象
+		//变量number属于test函数的作用域对象
+		function test(){ //ACT1
+			var number = 100;
+			function test2(){ //ACT2
+				var number = 99;
+				function test3() { //ACT3
+					console.log(number);
+				}
+				test3();
+			}
+			test2();
+		}
+		
+		test();
+	</script>
+    <body>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+    </body>
+</html>

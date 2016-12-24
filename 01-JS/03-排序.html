@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+<script>
+	//伪数组
+	var plist = document.getElementsByTagName('p');
+	//把一个伪数组转换成了数组
+	plist = Array.prototype.slice.call(plist)
+	//slice方法的实现原理
+	Array.prototype.slice = function(start,end){
+		var arr = [];
+		start = start || 0;
+		end = end || plist.length;
+		for(var i = start;i < end;i++){
+			arr.push(this[i]);
+		}
+		return arr;
+	}
+	//使用for循环会将伪数组的所有属性打印出来
+	for(var i in plist){
+		//console.log(i) //如果plist是伪数组，则会打印出length这样的属性
+	}
+	console.log(plist instanceof Array);//判断数组，布尔值
+	console.log(plist.length);
+
+
+	//数组的sort方法
+	//a>b,返回大于0的数;
+	//a=b,返回等于0的数;
+	//a<b,返回小于0的数;
+	var arr = ['111','32','12','1']
+	/*arr.sort();
+	console.log(arr)
+	//["1", "111", "12", "32"]
+
+	arr.sort(function(a,b){
+		return a-b
+	})
+	console.log(arr);
+	//["1", "12", "32", "111"]
+	*/
+
+	//冒泡排序
+	var arr1 = [1,12,32,14,111,2];
+	for(var i = 0;i <arr1.length;i++){
+		for(var j = 0;j <arr1.length-1-i;j++){
+			if(arr1[j]<arr1[j+1]){
+				var temp = arr1[j];
+				arr1[j] = arr1[j+1];
+				arr1[j+1] = temp;
+			}
+		}
+	}
+	//console.log(arr1);
+
+	//选择排序
+	var arr2=[1,12,32,14,111,2];
+	/*for(var i = 0;i < arr2.length;i++){
+		for(var j = i;j <arr2.length;j++){
+			if(arr2[i]>arr2[j]){
+				var temp = arr2[i];
+				arr2[i] = arr2[j];
+				arr2[j] = temp;
+			}
+		}
+	}
+	console.log(arr2);*/
+
+	//快速排序
+	function quicksort(arr2){
+		if(arr2.length <=1) return arr2;//结束条件
+		var minIndex =parseInt(arr2.length/2);
+		var mid = arr2[minIndex];
+		var left=[];
+		var right=[];
+		
+		for(var i = 0;i <arr2.length;i++){
+			if(i == minIndex) continue;//跳过此次循环
+			if(arr2[i] <= mid){
+				left.push(arr2[i])
+			}else{
+				right.push(arr2[i])
+			}
+		}
+		// 递归调用  F(arr) = F(left) + mid + F(right)
+		return quicksort(left).concat(mid).concat(quicksort(right));
+	}
+	console.log(quicksort(arr2))
+</script>
+</body>
+</html>

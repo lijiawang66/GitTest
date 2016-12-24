@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	var list = ["a","b","c","d"];
+	list.forEach(function(item,index,array){
+		console.log(item,index,array)
+	})
+	//谷歌浏览器后面加console
+	list.forEach(console.log,console)
+	var list={
+		0:"a",
+		1:"b",
+		2:"c",
+		length:3//当这个属性不能被遍历时，它看起来就跟数组没区别了。
+	}
+	for(var i = 0;i <list.length;i++){
+		console.log(i)//0,1,2
+	}
+	for(var i in list){
+		//console.log(i)//0,1,2,length
+		console.log(list[i])//a,b,c,3
+	}
+</script>
+</body>
+</html>

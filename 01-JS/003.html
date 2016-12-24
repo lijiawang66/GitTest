@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+	<script>
+		
+		var obj = {
+			id : 50,
+			name : "yt",
+			age : 18
+		}
+		
+		window.onload = function(){
+			//伪数组
+			var plist = document.getElementsByTagName("p");
+			
+			
+			//把一个伪数组转换成了数组
+			plist = Array.prototype.slice.call(plist);
+			
+			//slice方法的实现原理
+			Array.prototype.slice = function(start,end){
+				var arr = [];
+				start = start || 0;
+				end = end || this.length;
+				for(var i=start; i<end; i++){
+					arr.push(this[i]);
+				}
+				return arr;
+			}
+			
+			//使用for循环会将伪数组的所有属性打印出来
+			for(var i in plist){
+				console.log(i);
+			}
+			
+
+			console.log(plist instanceof Array);
+			console.log(plist.length);
+		}
+		
+		
+		
+	</script>
+    <body>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+		<p>a</p>
+    </body>
+</html>
